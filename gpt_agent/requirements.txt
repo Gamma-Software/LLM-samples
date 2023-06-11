@@ -1,0 +1,7 @@
+dotenv
+wikipedia
+langchain
+openai
+streamlit
+streamlit-chat
+ipykernel
