@@ -1,0 +1,15 @@
+{
+    "thoughts": {
+        "text": "I will need to continue my search for nannies in the Cergy area who specialize in alternative pedagogies such as Montessori and have availability starting from December 4th. I will search for other nanny agencies and job postings that meet my requirements.",
+        "reasoning": "I can search for other nanny agencies and job postings that meet my requirements. I can also contact local Montessori schools and ask if they have any recommendations for nannies who specialize in Montessori pedagogy.",
+        "plan": "- Search for other nanny agencies and job postings that meet my requirements\n- Contact local Montessori schools and ask if they have any recommendations for nannies who specialize in Montessori pedagogy",
+        "criticism": "I need to ensure that I am thorough in my search for nannies and that I am considering all possible options. I also need to verify that the nannies I find are reputable and have a good track record.",
+        "speak": "I will continue my search for nannies in the Cergy area who specialize in alternative pedagogies such as Montessori and have availability starting from December 4th. I will search for other nanny agencies and job postings that meet my requirements."
+    },
+    "command": {
+        "name": "google",
+        "args": {
+            "query": "Montessori nannies in Cergy with availability starting from December 4th"
+        }
+    }
+}

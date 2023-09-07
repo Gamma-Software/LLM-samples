@@ -1,0 +1,16 @@
+{
+    "thoughts": {
+        "text": "I will analyze the search results to determine which websites are relevant to my search. I will also check the websites of the nanny agencies to see if they have any job postings that meet my requirements.",
+        "reasoning": "Analyzing the search results will help me determine which websites are relevant to my search. Checking the websites of the nanny agencies will help me determine if they have any job postings that meet my requirements.",
+        "plan": "- Analyze the search results to determine which websites are relevant to my search\n- Check the websites of the nanny agencies to see if they have any job postings that meet my requirements",
+        "criticism": "I need to ensure that I am thorough in my analysis of the search results and that I am considering all possible options. I also need to verify that the job postings I find are reputable and have a good track record.",
+        "speak": "I will analyze the search results to determine which websites are relevant to my search. I will also check the websites of the nanny agencies to see if they have any job postings that meet my requirements."
+    },
+    "command": {
+        "name": "browse_website",
+        "args": {
+            "url": "https://www.momji.fr/en/discover-garde-active-montessori-nanny",
+            "question": "Do they have any job postings that meet my requirements?"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "thoughts": {
+        "text": "I will use a search engine to find nanny agencies in the Cergy area that specialize in Montessori education and have a good reputation. I will also check for reviews and ratings of the agencies to ensure that they are reputable.",
+        "reasoning": "Using a search engine to find nanny agencies in the Cergy area that specialize in Montessori education and have a good reputation will help me find qualified nannies. Checking for reviews and ratings of the agencies will help me ensure that they are reputable.",
+        "plan": "- Use a search engine to find nanny agencies in the Cergy area that specialize in Montessori education and have a good reputation\n- Check for reviews and ratings of the agencies to ensure that they are reputable",
+        "criticism": "I need to ensure that I am using reliable sources and that I am considering all possible options. I also need to verify that the agencies I find are reputable and have a good track record.",
+        "speak": "I will use a search engine to find nanny agencies in the Cergy area that specialize in Montessori education and have a good reputation. I will also check for reviews and ratings of the agencies to ensure that they are reputable."
+    },
+    "command": {
+        "name": "google",
+        "args": {
+            "query": "Montessori nanny agencies in Cergy with good reputation"
+        }
+    }
+}

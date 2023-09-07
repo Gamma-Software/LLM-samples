@@ -1,0 +1,15 @@
+{
+    "thoughts": {
+        "text": "I will start by searching for nannies in the Cergy area who specialize in alternative pedagogies such as Montessori and have availability starting from December 4th. I will need to keep track of the candidates' information and schedule interviews with them. Once a nanny is hired, I will need to provide ongoing support and monitor their performance to ensure the best care for the child.",
+        "reasoning": "I will need to use internet searches to find potential candidates and keep track of their information in files. I will also need to use a calendar or scheduling tool to schedule interviews. Once a nanny is hired, I can use regular check-ins and evaluations to monitor their performance.",
+        "plan": "- Search for nannies in Cergy area specializing in alternative pedagogies\n- Keep track of candidates' information in files\n- Schedule interviews with candidates\n- Provide ongoing support and monitor performance of hired nanny",
+        "criticism": "I need to ensure that I am thorough in my search and screening process to find the best candidate for the child. I also need to be organized in keeping track of information and scheduling interviews.",
+        "speak": "I will start by searching for nannies in the Cergy area who specialize in alternative pedagogies such as Montessori and have availability starting from December 4th. I will keep track of their information and schedule interviews with them. Once a nanny is hired, I will provide ongoing support and monitor their performance to ensure the best care for the child."
+    },
+    "command": {
+        "name": "google",
+        "args": {
+            "query": "nannies in Cergy area specializing in alternative pedagogies"
+        }
+    }
+}

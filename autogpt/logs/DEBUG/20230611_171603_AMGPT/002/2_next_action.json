@@ -1,0 +1,16 @@
+{
+    "thoughts": {
+        "text": "I will need to screen the potential candidates to ensure they meet my specific requirements, including location, experience, and pedagogical approach. I will keep track of this information in a file for each candidate.",
+        "reasoning": "I will need to visit the websites of the potential candidates to gather information about their experience and pedagogical approach. I will also need to verify their location and availability. I can keep track of this information in a file for each candidate.",
+        "plan": "- Visit websites of potential candidates\n- Gather information about their experience and pedagogical approach\n- Verify their location and availability\n- Keep track of information in a file for each candidate",
+        "criticism": "I need to ensure that I am thorough in my screening process to find the best candidate for the child. I also need to be organized in keeping track of information for each candidate.",
+        "speak": "I will screen the potential candidates to ensure they meet my specific requirements, including location, experience, and pedagogical approach. I will keep track of this information in a file for each candidate."
+    },
+    "command": {
+        "name": "browse_website",
+        "args": {
+            "url": "https://alternativenannies.com/",
+            "question": "What is the experience and pedagogical approach of the nannies?"
+        }
+    }
+}
