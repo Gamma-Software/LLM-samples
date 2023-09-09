@@ -148,33 +148,27 @@ def _clean_codes_data(codes):
                  "code": code["code"].replace("_", " ")} for code in codes)
 
 
-def parse_codes(codes, themes):
-    # Create an empty dictionary to store the data
-    data_dict = {"Theme": [], "Codes": [], "Excerpts from transcript": []}
+def parse_codes(_codes, _themes):
+    # Create an empty dictionary to store the cleaned data
+    cleaned_data_dict = {"Theme": [], "Codes": [], "Excerpts from transcript": []}
 
-    # Parse in json
-    json_codes = json.loads(codes)
-    json_themes = json.loads(themes)
+    # Create a set to store unique codes
+    json1_data = json.loads(_codes)
+    json2_data = json.loads(_themes)
 
-    # Clean the data
-    themes = _clean_themes_data(json_themes)
-    themes
-    codes = _clean_codes_data(json_codes)
-    codes
-
-    # Iterate through Theme JSON and add the theme and codes
-    for theme_data in themes["themes"]:
+    # Fill columns
+    for theme_data in json2_data["themes"]:
         theme = theme_data["theme"]
-        codes = theme_data["code"]
-        data_dict["Theme"].append(theme)
-        data_dict["Codes"].append("\n".join(codes))
-
-        for code in codes:
-            excerpts_combined = []
-            for item in json_codes:
-                if item["code"] == code:
+        codes = set(theme_data["code"])  # Remove duplicates
+        code = ", ".join([d.replace("_", " ") for d in codes])  # Replace underscores with spaces
+        cleaned_data_dict["Theme"].append(theme)
+        cleaned_data_dict["Codes"].append(code)
+        excerpts_combined = []
+        for c in codes:
+            for item in json1_data:
+                if c == item["code"]:
                     excerpts_combined.append(item["excerpt"])
-        data_dict["Excerpts from transcript"].append("\n".join(excerpts_combined))
+        excerpts_combined = set(excerpts_combined)
+        cleaned_data_dict["Excerpts from transcript"].append(", ".join(excerpts_combined))
 
-    # Create a DataFrame from the dictionary
-    return pd.DataFrame(data_dict)
+    return pd.DataFrame(cleaned_data_dict)

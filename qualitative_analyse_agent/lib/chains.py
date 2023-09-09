@@ -71,7 +71,7 @@ def generate_themes_chain():
     </code>
 
     <summary>
-    {summary}
+    {summary_qa}
     </summary>
 
     <question>
@@ -81,7 +81,7 @@ def generate_themes_chain():
     themes:"""
     llm = ChatOpenAI(temperature=0.5, model_name="gpt-3.5-turbo-16k")
     extract_themes_prompt_template = PromptTemplate(
-        input_variables=["codes", "summary", "question"],
+        input_variables=["codes", "summary_qa", "question"],
         template=prompt_themes,
         partial_variables={"format_instructions": theme_parser.get_format_instructions()},)
     return LLMChain(llm=llm, prompt=extract_themes_prompt_template, output_key="themes")

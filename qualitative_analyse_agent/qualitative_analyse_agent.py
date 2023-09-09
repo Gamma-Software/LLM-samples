@@ -23,6 +23,7 @@ load_dotenv()
 langchain.debug = True
 
 st.title("Qualitative Analysis 📝 Agent")
+st.caption("Using the power of LLMs")
 
 st.sidebar.title("Menu")
 menu = st.sidebar.selectbox("Select pages", ["Raw data", "Qualitative Analysis"], index=1)
@@ -67,7 +68,7 @@ st.sidebar.markdown("Made with ❤️ by [Valentin Rudloff](https://www.linkedin
 
 
 if not files:
-    st.warning("Please upload some qualitative data in the sidebar")
+    st.info("Please upload some qualitative data in the sidebar")
     st.stop()
 
 # Fetching Qualitative Data
@@ -85,7 +86,8 @@ if files:
         # To read file as string:
         string_data = stringio.read()
         qualitative_docs.append("\n".join([string_data]))
-    qualitative_docs_string = "\n\n".join([f"Qualitative Data {files[i].name}:\n{d}" for i, d in enumerate(qualitative_docs)])
+    qualitative_docs_string = "\n\n".join(
+        [f"Qualitative Data {files[i].name}:\n{d}" for i, d in enumerate(qualitative_docs)])
 
     if qualitative_docs and menu == "Raw data":
         st.subheader("Show Raw data")
@@ -102,84 +104,57 @@ if menu == "Raw data":
         with st.spinner("Summarizing..."):
             chain = summary_chain()
             summarize = chain({"max_limit_summary": max_limit_summary_words,
-                                       "transcript": qualitative_docs_string})
+                               "transcript": qualitative_docs_string})
             with st.expander("Summary"):
                 st.markdown(summarize["summary"])
 
 # --- Summarizing qualitative data based on a research question ---
 # This step should use the RAG method to repond to the user based on the question
 if menu == "Qualitative Analysis":
-    question = st.text_area("Research question", placeholder="How do students perceive the quality and accessibility of food services on campus, and what factors influence their dining choices and satisfaction?")
+    question = st.text_area("Research question", placeholder="How do students perceive the quality "
+                            "and accessibility of food services on campus, and what factors "
+                            "influence their dining choices and satisfaction?")
 
-    placeholder = st.empty()
-    if not question:
-        st.info("Please enter a question to continue analysis...")
-
-    elif placeholder.button("Summarize transcript with question", key="summarize_qa"):
-        with placeholder.spinner("Summarizing..."):
-            chain = summary_qa_chain()
-            summarize = chain({"max_limit_summary": max_limit_summary_words,
-                                          "transcript": qualitative_docs_string,
-                                          "question": question})
-            st.markdown(summarize["summary_qa"])
+    # --- Summarizing transcripts ---
+    # DONE
 
     # --- Generating initial codes ---
-    extract_code_chain = generate_codes_chain()
-
-    if question and st.button("Generate codes on question", key="generate_codes"):
-        with st.spinner("Processing..."):
-            extract_codes = extract_code_chain({"min_limit_codes": min_limit_codes,
-                                                "max_limit_codes": max_limit_codes,
-                                                "transcript": qualitative_docs_string,
-                                                "question": question})
-            with st.expander("Codes generated"):
-                st.write(extract_codes["codes"])
+    # DONE
 
     # --- (Double check) Verify the codes generated ---
     # TODO
 
     # --- Generating themes ---
-
-    extract_themes_chain = generate_themes_chain()
-
-    if question and st.button("Generate themes on question", key="generate_themes"):
-        with st.spinner("Processing..."):
-            extract_themes = extract_themes_chain({"codes": codes, "summary": summary, "question": question})
-            with st.expander("Themes generated"):
-                st.write(extract_themes["themes"])
-
+    # DONE
 
     # --- (Double check) Verify the themes generated ---
     # TODO
 
-
     # --- Get source of the excerpts ---
     # TODO
 
-
     # --- Execute LLM Chain ---
-
-
     output = None
-    if question and st.button("🚄 Perform Qualitative Analysis"):
-        output = overall_chain.run({"transcript": qualitative_docs_string, "question": question})
+    if not question:
+        st.info("Please enter a question to continue analysis...")
+    elif st.button("🚄 Perform Qualitative Analysis"):
+        with st.spinner("Summarizing..."):
+            output = overall_chain()({"max_limit_summary": max_limit_summary_words,
+                                      "min_limit_codes": min_limit_codes,
+                                      "max_limit_codes": max_limit_codes,
+                                      "transcript": qualitative_docs_string,
+                                      "question": question}, return_only_outputs=True)
+            generated_themes = output["themes"]
+            generated_codes = output["codes"]
+            generated_summary = output["summary_qa"]
 
     # --- Generating a report in a table form ---
-    # TODO
     if output:
         st.header("Analysis report 📈")
-        #st.metric(label="Codes", value=len(codes))
-        #st.table()
-    st.caption("This is a summary of the qualitative analysis")
 
-    st.header("Analysis report 📈")
-    table = parse_codes(codes, themes)
-    st.subheader("Summary")
-    st.caption(summary)
-    st.subheader("Metrics")
-    col1, col2, col3 = st.columns(3)
-    col1.metric(label="Themes", value=len(table["Theme"]))
-    col2.metric(label="Codes", value=len(table["Codes"]))
-    col3.metric(label="Excerpts", value=len(table["Excerpts from transcript"]))
-    st.subheader("Table")
-    st.table(table)
+        st.subheader("Summary")
+        st.caption(generated_summary)
+
+        st.subheader("Table")
+        table = parse_codes(generated_codes, generated_themes)
+        st.table(table)
